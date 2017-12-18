@@ -6,19 +6,29 @@ import './css/styles.css';
 import $ from 'jquery';
 import _ from 'underscore';
 
+// collections
+import MovieList from 'collections/movie_list';
+
+// views
+import MovieView from './views/movie_view.js';
+import MovieListView from './views/movie_list_view.js';
+
+// model
+import Movie from 'models/movie';
+
 
 // ready to go
 $(document).ready(function() {
 
-  const movies = new MovieList(movieData);
+  const movies = new MovieList();
 
-  const MovieListView = new MovieListView({
+  const movieListView = new MovieListView({
     model: movies,
     template: _.template($('#movie-template').html()),
-    el: 'main'
+    el: ('#movie')
   });
 
   $('#main-content').append('<p>Hello World!</p>');
 
-  MovieListView.render();
+  movieListView.render();
 });
