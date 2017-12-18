@@ -24,9 +24,12 @@ $(document).ready(function() {
   const movieListView = new MovieListView({
     model: movies,
     template: _.template($('#movie-template').html()),
-    el: ('#movie')
+    el: ('#main-content')
   });
 
-  movies.fetch();
-  movieListView.render();
+  movies.fetch({
+    success: function(){
+      movieListView.render();
+    }
+  });
 });
