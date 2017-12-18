@@ -21,14 +21,12 @@ import Movie from 'models/movie';
 $(document).ready(function() {
 
   const movies = new MovieList();
-
   const movieListView = new MovieListView({
     model: movies,
     template: _.template($('#movie-template').html()),
     el: ('#movie')
   });
 
-  $('#main-content').append('<p>Hello World!</p>');
-
+  movies.fetch();
   movieListView.render();
 });

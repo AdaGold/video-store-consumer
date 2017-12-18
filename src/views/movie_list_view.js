@@ -1,21 +1,22 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
-import OrderView from '../views/movie_view';
-import Order from '../models/movie';
+import MovieView from '../views/movie_view';
+import Movie from '../models/movie';
 
 const MovieListView = Backbone.View.extend({
   initialize(params) {
+    console.log(params);
     this.template = params.template;
     this.listenTo(this.model,"update", this.render);
   },
   render() {
-    this.$('#MOVIE').empty();
+    this.$('#movie').empty();
 
     this.model.each((movie) => {
       const movieView = new MovieView({
         model: movie,
         template: this.template,
-        tagName: 'li',
+        tagName: 'article',
         className: 'movie',
       });
       this.$('#movie').prepend(movieView.render().$el);
