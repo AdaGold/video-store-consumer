@@ -6,7 +6,7 @@ import Movie from '../models/movie';
 
 const MovieListView = Backbone.View.extend({
   initialize(params) {
-    console.log(params);
+    // console.log(params);
     this.template = params.template;
     this.listenTo(this.model,"update", this.render);
   },
@@ -24,20 +24,17 @@ const MovieListView = Backbone.View.extend({
     });
     return this;
   },
+
   events: {
     'submit #search-movies': 'searchMovies',
   },
-  searchMovies: function(e){
-    e.preventDefault();
-    console.log('Tried to search a movie!');
-    this.url = `http://localhost:3000/movies?query=${this.$('input[name=query]').val()}`;
-    console.log(this.url);
-    this.model.fetch({
-      success: function(){
-        console.log(this);
-        this.render();
-      }
-    });
+
+  searchMovies: function(event){
+    event.preventDefault();
+    const query = this.$('input[name=query]').val();
+    this.model.fetch({data: {"query": query}});
+    console.log('Inside searchMovies');
+    console.log(this.model);
   }
 
 });

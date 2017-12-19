@@ -12,14 +12,13 @@ import MovieList from 'collections/movie_list';
 // views
 import MovieView from './views/movie_view.js';
 import MovieListView from './views/movie_list_view.js';
+import SearchMoviesView from './views/movie_list_view.js';
 
 // model
 import Movie from 'models/movie';
 
-
 // ready to go
 $(document).ready(function() {
-
   const movies = new MovieList();
   const movieListView = new MovieListView({
     model: movies,
