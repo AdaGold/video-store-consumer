@@ -8,7 +8,9 @@ const MovieListView = Backbone.View.extend({
   initialize(params) {
     // console.log(params);
     this.template = params.template;
+    this.searchTemplate = params.searchTemplate;
     this.listenTo(this.model,"update", this.render);
+    this.listenTo(this,"showSearched", this.renderSearch);
   },
   render() {
     console.log("INSIDE RENDER");
@@ -26,6 +28,12 @@ const MovieListView = Backbone.View.extend({
     return this;
   },
 
+  renderSearch() {
+    console.log("************");
+    console.log("INSIDE RENDER SEARCH");
+    this.template = this.searchTemplate;
+  },
+
   events: {
     'submit #search-movies': 'searchMovies',
   },
@@ -34,6 +42,7 @@ const MovieListView = Backbone.View.extend({
     event.preventDefault();
     const query = this.$('input[name=query]').val();
     this.model.fetch({data: {"query": query}});
+    this.trigger('showSearched', this);
     console.log('Inside searchMovies');
     console.log(this.model);
   }
