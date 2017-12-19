@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+
 import _ from 'underscore';
 import MovieView from '../views/movie_view';
 import Movie from '../models/movie';
@@ -29,6 +30,14 @@ const MovieListView = Backbone.View.extend({
   searchMovies: function(e){
     e.preventDefault();
     console.log('Tried to search a movie!');
+    this.url = `http://localhost:3000/movies?query=${this.$('input[name=query]').val()}`;
+    console.log(this.url);
+    this.model.fetch({
+      success: function(){
+        console.log(this);
+        this.render();
+      }
+    });
   }
 
 });
