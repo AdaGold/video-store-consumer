@@ -15,7 +15,7 @@ const MovieListView = Backbone.View.extend({
     this.listenTo(this.model,"currentInv", this.render);
   },
   render() {
-    console.log("INSIDE OF RENDER");
+    console.log("INSIDE RENDER");
     this.$('#movie').empty();
 
     this.model.each((movie) => {
@@ -59,6 +59,5 @@ const MovieListView = Backbone.View.extend({
   }
 
 });
-
 
 export default MovieListView;

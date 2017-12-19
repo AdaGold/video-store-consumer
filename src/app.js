@@ -27,10 +27,5 @@ $(document).ready(function() {
     el: ('#main-content')
   });
 
-  // after call to external API, render the movieListView
-  movies.fetch({
-    success: function(){
-      movieListView.render();
-    }
-  });
+  movies.fetch();
 });
