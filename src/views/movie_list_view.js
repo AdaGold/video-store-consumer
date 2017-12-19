@@ -24,8 +24,13 @@ const MovieListView = Backbone.View.extend({
     return this;
   },
   events: {
-
+    'submit #search-movies': 'searchMovies',
   },
+  searchMovies: function(e){
+    e.preventDefault();
+    console.log('Tried to search a movie!');
+  }
+
 });
 
 
