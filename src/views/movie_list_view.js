@@ -11,6 +11,8 @@ const MovieListView = Backbone.View.extend({
     this.searchTemplate = params.searchTemplate;
     this.listenTo(this.model,"update", this.render);
     this.listenTo(this,"showSearched", this.renderSearch);
+
+    this.listenTo(this.model,"currentInv", this.render);
   },
   render() {
     console.log("INSIDE OF RENDER");
@@ -36,15 +38,24 @@ const MovieListView = Backbone.View.extend({
 
   events: {
     'submit #search-movies': 'searchMovies',
+    'click button.view-inventory': 'showInventory',
   },
 
-  searchMovies: function(event){
+  searchMovies: function(event)
+  {
     event.preventDefault();
     const query = this.$('input[name=query]').val();
     this.model.fetch({data: {"query": query}});
     this.trigger('showSearched', this);
     console.log('Inside searchMovies');
     console.log(this.model);
+  },
+
+  showInventory: function(event) {
+    event.stopImmediatePropagation();
+    console.log("inside showInventory");
+    this.model.fetch();
+    this.trigger('currentInv');
   }
 
 });
