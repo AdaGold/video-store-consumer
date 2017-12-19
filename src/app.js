@@ -23,6 +23,7 @@ $(document).ready(function() {
   const movieListView = new MovieListView({
     model: movies,
     template: _.template($('#movie-template').html()),
+    searchTemplate: _.template($('#search-template').html()),
     el: ('#main-content')
   });
 
