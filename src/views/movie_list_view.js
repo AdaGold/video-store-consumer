@@ -56,8 +56,7 @@ const MovieListView = Backbone.View.extend({
     console.log("inside showInventory");
     this.model.fetch();
     this.trigger('currentInv');
-  }
-
+  },
 });
 
 export default MovieListView;
